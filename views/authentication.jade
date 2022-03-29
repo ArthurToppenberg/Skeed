@@ -23,7 +23,11 @@ html
           label(for='password', class='text') Password 
           input(type='password', name='password', class='form-control')
         div(class = 'form-group')
-          input(type='submit', value='Login', class='btn btn-primary') 
+          input(type='submit', value='Login', class='btn')
+
+       form(action='/register', method='get')
+         div(class = 'form-group')
+          input(type='submit', value='Register', class='btn')
   else
     div(class = 'form')
       form(action='/register', method='post')
@@ -31,12 +35,14 @@ html
           label(for='username', class='text') Username 
           input(type='text', name='username', class='form-control')
         div(class = 'form-group')
-          label(for='password', class='text') Password
+          label(for='password', class='text')  Password
           input(type='password', name='password', class='form-control')
         div(class = 'form-group')
           label(for='password_confirmation', class='text') Password Confirmation 
           input(type='password', name='password_confirmation', class='form-control')
         div(class = 'form-group')
-          input(type='submit', value='Register', class='btn btn-primary')
-        div(class = 'form-group')
-          button(type='submit', value='/', class='btn btn-primary')
+          input(type='submit', value='Register', class='btn')
+
+      form(action='/login', method='get')
+         div(class = 'form-group')
+          input(type='submit', value='Login', class='btn')
