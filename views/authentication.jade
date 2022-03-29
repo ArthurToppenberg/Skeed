@@ -1,0 +1,42 @@
+doctype html
+html
+  head
+    title= title
+    script(type='text/javascript' src='/javascripts/matrix_background.js')
+    link(rel='stylesheet', href='/stylesheets/default.css')
+  body
+    block content
+    //nav bar
+    div(class = 'navbar')
+      img(src= logo, class= "logo")
+    
+    //form
+    p(class='title')= page
+
+  if(type == 'login')
+    div(class = 'form')
+      form(action='/login', method='post')
+        div(class = 'form-group')
+          label(for='username', class='text') Username 
+          input(type='text', name='username', class='form-control')
+        div(class = 'form-group')
+          label(for='password', class='text') Password 
+          input(type='password', name='password', class='form-control')
+        div(class = 'form-group')
+          input(type='submit', value='Login', class='btn btn-primary') 
+  else
+    div(class = 'form')
+      form(action='/register', method='post')
+        div(class = 'form-group')
+          label(for='username', class='text') Username 
+          input(type='text', name='username', class='form-control')
+        div(class = 'form-group')
+          label(for='password', class='text') Password
+          input(type='password', name='password', class='form-control')
+        div(class = 'form-group')
+          label(for='password_confirmation', class='text') Password Confirmation 
+          input(type='password', name='password_confirmation', class='form-control')
+        div(class = 'form-group')
+          input(type='submit', value='Register', class='btn btn-primary')
+        div(class = 'form-group')
+          button(type='submit', value='/', class='btn btn-primary')
