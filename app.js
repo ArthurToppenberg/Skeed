@@ -1,11 +1,11 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var logger = require('morgan');
 
 var authenticationRouter = require('./routes/authentication');
 var usersRouter = require('./routes/schematic');
 var pageNotFoundRouter = require('./routes/pageNotFound');
+var homeRouter = require('./routes/home');
 
 var app = express();
 
@@ -17,6 +17,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', authenticationRouter);
 app.use('/users', usersRouter);
-app.use('*', pageNotFoundRouter);
+app.use('/home', homeRouter);
 
+//if non of the pages responded use pageNotFoundRouter
+app.use('*', pageNotFoundRouter);
 module.exports = app;

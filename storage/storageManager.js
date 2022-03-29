@@ -24,3 +24,9 @@ function writeJSON(filePath, data) {
         console.log(error)
     }
 }
+
+module.exports = {
+    checkFileExists,
+    readJSON,
+    writeJSON
+}

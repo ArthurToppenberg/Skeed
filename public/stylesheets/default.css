@@ -26,10 +26,16 @@ a {
   word-wrap: break-word;
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   font-size: 20px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.background{
+  background-color: #2E382E;
 }
 
 .navbar {
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   margin: 0px;
@@ -39,8 +45,16 @@ a {
   background-color: #9883E5;
 }
 
+.navbar-userinfo {
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: auto;
+  height: auto;
+}
+
 .logo {
-  position: inherit;
+  position: relative;
   top: 0px;
   left: 0px;
   height: auto;
@@ -55,16 +69,24 @@ a {
   margin: 0px;
   padding: 10px;
   height: auto;
-  width: auto;
+  width: 260px;
   background-color: #9883E5;
   border-radius: 10px;
 }
 
 .form-group{
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
   margin: 0px;
-  padding: 2px;
-  height: auto;
-  width: auto;
+  padding: 6px;
+}
+
+.form-control{
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  width: 235px;
 }
 
 .btn {
