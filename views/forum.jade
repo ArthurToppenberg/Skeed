@@ -2,7 +2,6 @@ doctype html
 html
   head
     title= title
-    script(type='text/javascript' src='/javascripts/loadAllForums.js')
     link(rel='stylesheet', href='/stylesheets/default.css')
   body
     block content
@@ -13,7 +12,7 @@ html
         p(class='text background')= 'Welcome'
         div(class='form-group')
           img(src=settingsIcon, class= "settings-icon")
-          a(href='/home/settings', class= "settings-link")
+          a(href='/settings', class= "settings-link")
             img(src=logoutIcon, class= "logout-icon")
             p(class='text')= username
         
@@ -24,4 +23,4 @@ html
     
     //content
     p(class='title')= page
-    div(class='forums-div', id='forums')
+    

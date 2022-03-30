@@ -1,15 +1,34 @@
-function getMsg() {
+
+function getForums(dir) {
     // Creates a promise object for retrieving the desired data
-    fetch("/home/allForums")
+    fetch(dir)
     // When recieved, exposes the JSON component
     .then((response) => {
         return response.json();
-    })
-    // Displays the message on the page
-    .then((json) => {
-        new_msg = "Server message: "+json.msg
-        document.getElementById("msg").innerHTML = new_msg;
+    }).then((json) => {
+        console.log(json.forums);
+        showForums(json.forums);
     });
 }
 
-console.log(getMsg());
+function showForums(allForums) {
+
+    const forums_div = document.getElementById('forums');
+
+    allForums.forEach(element => {
+        
+        const forum_div = document.createElement('div');
+        forum_div.classList.add('forum-flex-container');
+
+        const forum_link = document.createElement('a');
+        forum_link.href = `/forums${element}`;
+        forum_link.innerHTML = element;
+
+        forum_div.appendChild(forum_link);
+        forums_div.appendChild(forum_div);
+
+    });
+
+}
+
+getForums('/forums/allforums');
