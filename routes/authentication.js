@@ -52,7 +52,6 @@ router.post('/register', function(req, res, next) {
 router.get('/login', function(req, res, next) {
   res.render('authentication', { 
     title: 'Authentication',
-
     type: 'login',
     //nav bar
     logo: 'images/logo_transparent.png',
