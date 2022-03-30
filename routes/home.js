@@ -19,9 +19,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/settings', function(req, res, next) {
     if(validateSession(req)){
-        res.render('settings', {
-            title: 'Settings'
-        });
+        res.send('settings is still under development');
     }else{
         res.redirect('/login');
     }

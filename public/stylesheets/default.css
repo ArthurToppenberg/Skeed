@@ -152,6 +152,19 @@ a {
   border-radius: 10px;
 }
 
+.forum-content {
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%);
+  height: auto;
+  width: 1000px;
+  padding: 10px;
+  margin: 0px;
+  background-color: #9883E5;
+  display: flexbox;
+}
+
 /*
 #2E382E
 #50C9CE

@@ -7,15 +7,17 @@ html
     block content
     //nav bar
     div(class='navbar')
-      img(src= logo, class= "logo")
+      a(href='/home')
+        img(src= logo, class= "logo")
       div(class='navbar-userinfo')
         p(class='text background')= 'Welcome'
         div(class='form-group')
           img(src=settingsIcon, class= "settings-icon")
-          a(href='/settings', class= "settings-link")
+          a(href='../home/settings', class= "settings-link")
             img(src=logoutIcon, class= "logout-icon")
             p(class='text')= username
         
+        //social bar
         div(class='social-bar')
           p(class='text background')= 'Followers: '
           p(class='text background')= 'Following: '
@@ -23,4 +25,6 @@ html
     
     //content
     p(class='title')= page
+    div(class='forum-content', id='forum-content')
+      
     

@@ -1,3 +1,7 @@
+
+storage/forums/*
+storage/users/*
+
 # Logs
 logs
 *.log
