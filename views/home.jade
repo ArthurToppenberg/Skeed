@@ -2,7 +2,7 @@ doctype html
 html
   head
     title= title
-    script(type='text/javascript' src='/javascripts/matrix_background.js')
+    script(type='text/javascript' src='/javascripts/loadAllForums.js')
     link(rel='stylesheet', href='/stylesheets/default.css')
   body
     block content
@@ -11,7 +11,16 @@ html
       img(src= logo, class= "logo")
       div(class='navbar-userinfo')
         p(class='text background')= 'Welcome'
-        p(class='text')= username
+        div(class='form-group')
+          img(src=settingsIcon, class= "settings-icon")
+          a(href='/settings', class= "settings-link")
+            img(src=logoutIcon, class= "logout-icon")
+            p(class='text')= username
+        
+        div(class='social-bar')
+          p(class='text background')= 'Followers: '
+          p(class='text background')= 'Following: '
+          p(class='text background')= 'Likes: '
     
     //form
     p(class='title')= page

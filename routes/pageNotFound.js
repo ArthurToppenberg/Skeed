@@ -6,7 +6,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('redirect', { 
     title: 'Page not found', 
-    redirectLocation: '/', 
+    redirectLocation: '/home', 
     redirectText: 'Back to home', 
     randomText: random_text(10000)
     });

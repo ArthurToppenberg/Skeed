@@ -10,7 +10,9 @@ function validate(username, password, password_confirmation) {
     && password.length >= 3
     && password.length <= 100
     && username.length >= 3
-    && username.length <= 100
+    && username.length <= 256
+    && username.match(/^[a-zA-Z0-9]+$/) //check only valid characters are entered
+    && password.match(/^[a-zA-Z0-9]+$/)
     ) {
         storageManager.writeJSON(`./storage/users/${username}.json`, {
             username: username,

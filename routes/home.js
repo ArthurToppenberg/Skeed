@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
         res.render('home', { 
         title: 'Home',
         logo: 'images/logo_transparent.png',
+        settingsIcon: 'images/settingsIcon.png',
         page: 'Directory',
         username: req.session.username
         });

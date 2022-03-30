@@ -22,7 +22,7 @@ a {
 .text {
   position: relative;
   color: white;
-  text-align: center;
+  text-align: inherit;
   word-wrap: break-word;
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   font-size: 20px;
@@ -43,6 +43,7 @@ a {
   height: 100%;
   width: 200px;
   background-color: #9883E5;
+  text-align: center;
 }
 
 .navbar-userinfo {
@@ -53,12 +54,41 @@ a {
   height: auto;
 }
 
+.social-bar{
+  position: relative;
+  top: 35px;
+  margin: 0px;
+  padding: 0px;
+  width: auto;
+  height: auto;
+  text-align: left;
+}
+
 .logo {
   position: relative;
   top: 0px;
   left: 0px;
   height: auto;
   width: 200px;
+}
+
+.settings-icon {
+  position: absolute;
+  top: 13px;
+  left: 5px;
+  height: auto;
+  width: 30px;
+  padding: 10px;
+}
+
+.settings-link {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  height: auto;
+  width: auto;
+  padding: auto;
+  margin: 0px;
 }
 
 .form{
