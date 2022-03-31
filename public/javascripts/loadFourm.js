@@ -1,0 +1,1 @@
+//load forum on page

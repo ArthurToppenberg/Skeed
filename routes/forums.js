@@ -16,16 +16,20 @@ router.get('/allForums', function(req, res, next) {
 
 //dynamicaly create rules for each forum
 forums.forEach(forum => {
-  console.log(forum);
-  router.get(forum, function(req, res, next) {
-      res.render('forum', { 
-      title: forum,
-      logo: '../images/logo_transparent.png',
-      settingsIcon: '../images/settingsIcon.png',
-      page: forum,
-      username: req.session.username
+    //create a new route for each forum
+    router.get(forum, function(req, res, next) {
+        if(validateSession(req)){
+            res.render('forum', { 
+            title: forum,
+            logo: '../images/logo_transparent.png',
+            settingsIcon: '../images/settingsIcon.png',
+            page: forum,
+            username: req.session.username
+            });
+        }else{
+            res.redirect('/login');
+        }
     });
-  });
 });
 
 module.exports = router;

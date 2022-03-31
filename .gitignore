@@ -1,6 +1,6 @@
 
-storage/forums/*
-storage/users/*
+# storage/forums/*
+# storage/users/*
 
 # Logs
 logs
