@@ -1,5 +1,4 @@
 var express = require('express');
-const { rmSync } = require('fs');
 var router = express.Router();
 const validateSession = require('../src/validateSession');
 const storageManager = require('../storage/storageManager');
@@ -59,10 +58,31 @@ router.post('/newThread', function(req, res, next) {
             id: id
         };
 
-        //save .json file
-        storageManager.writeJSON('storage/forums' + forum + '/' + id + '.json', thread);
+        var titleValidation = false;
+        var contentValidation = false;
+        var authorValidation = false;
 
-        res.redirect('/forums' + forum);
+        if(title != ''){
+            titleValidation = true;
+        }
+        if(content != '' && content != '<p><br></p>' && content.length > 10 && content.length < 1000){
+            contentValidation = true;
+        }
+        //if the author is not the same as the session username
+        if(author == req.session.username){
+            authorValidation = true;
+        }
+
+        res.json({
+            title: titleValidation,
+            content: contentValidation,
+            username: authorValidation
+        });
+
+        if(titleValidation && contentValidation && authorValidation){
+            //save .json file
+            storageManager.writeJSON('storage/forums' + forum + '/' + id + '.json', thread);
+        }
 
     }else{
         res.redirect('/login');
@@ -71,13 +91,24 @@ router.post('/newThread', function(req, res, next) {
 
 router.get('/getThreads', function(req, res, next) {
     if(validateSession(req)){
+        var json = [];
         //get the forum name
         const forum = req.session.forum;
         //get all the threads in the forum
         const threads = storageManager.readDir('storage/forums' + forum);
-        //remove 'forum-config.json' from the threads array (aka the last element)
         threads.pop();
-        return threads;
+        threads.forEach(thread => {
+            const data = storageManager.readJSON('storage/forums' + forum + '/' + thread);
+                json.push({
+                    title: data.title,
+                    content: data.content,
+                    username: data.author,
+                    date: data.date
+                });
+            });
+
+        res.json({threads: json});
+
     }else{
         res.redirect('/login');
     }

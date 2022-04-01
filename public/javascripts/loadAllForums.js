@@ -6,7 +6,6 @@ function getForums(dir) {
     .then((response) => {
         return response.json();
     }).then((json) => {
-        console.log(json.forums);
         showForums(json.forums);
     });
 }
