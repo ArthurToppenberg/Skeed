@@ -154,7 +154,7 @@ a {
 
 .forum-content {
   position: absolute;
-  top: 150px;
+  top: 180px;
   left: 50%;
   transform: translate(-50%);
   height: auto;
@@ -163,6 +163,60 @@ a {
   margin: 0px;
   background-color: #9883E5;
   display: flexbox;
+}
+
+.button{
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translate(-50%);
+  height: auto;
+  width: auto;
+  padding: 10px;
+  margin: 0px;
+  word-wrap: break-word;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+}
+
+.button-close{
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translate(-50%);
+  height: auto;
+  width: auto;
+  padding: 10px;
+  margin: 0px;
+  word-wrap: break-word;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+}
+
+.center{
+  position: inherit;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.bottom{
+  position: absolute;
+  bottom: 0px;
+}
+
+.left{
+  position: absolute;
+  left: 0px;
+}
+
+.top{
+  position: absolute;
+  top: 0px;
+}
+
+.right{
+  position: absolute;
+  right: 0px;
 }
 
 /*

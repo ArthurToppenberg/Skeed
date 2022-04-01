@@ -1,5 +1,6 @@
 {
     "forums" : [
+        "/intorduce",
         "/main", 
         "/random",
         "/sports",
@@ -18,7 +19,6 @@
         "/food",
         "/celebs",
         "/history",
-        "/random",
-        "/trash"
+        "/random"
         ]
 }

@@ -7,7 +7,7 @@
     "start": "nodemon ./bin/www"
   },
   "nodemonConfig": {
-      "ignore": ["storage/users/*", "storage/forums/*"]
+      "ignore": ["storage/users/*", "storage/forums/*", "public/javascripts/*"]
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
