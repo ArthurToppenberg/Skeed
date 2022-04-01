@@ -55,8 +55,19 @@ readJSON('storage/forums-config.json').forums.forEach(forum => {
     }
 });
 
+//json read directory
+function readDir(dirPath) {
+    try {
+        const files = fs.readdirSync(dirPath);
+        return files;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     checkFileExists,
     readJSON,
-    writeJSON
+    writeJSON,
+    readDir
 }

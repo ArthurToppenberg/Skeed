@@ -69,19 +69,19 @@ router.post('/newThread', function(req, res, next) {
     }
 });
 
-//send thread from forum to client
-forums.forEach(forum => {
-    //send thread from forum to client
-    router.post('forums'+forum, function(req, res, next) {
-        
-        //get thread
-        const threads = storageManager.readJSON('storage/forums' + forum + '/*.json');
-
-        //send all threads to client
-        if(thread.id != undefined){
-            res.json({threads: threads});
-        }
-    });
+router.get('/getThreads', function(req, res, next) {
+    if(validateSession(req)){
+        //get the forum name
+        const forum = req.session.forum;
+        //get all the threads in the forum
+        const threads = storageManager.readDir('storage/forums' + forum);
+        //remove 'forum-config.json' from the threads array (aka the last element)
+        threads.pop();
+        return threads;
+    }else{
+        res.redirect('/login');
+    }
 });
+
 
 module.exports = router;
