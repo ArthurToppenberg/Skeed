@@ -99,10 +99,11 @@ router.get('/getThreads', function(req, res, next) {
         threads.pop();
         threads.forEach(thread => {
             const data = storageManager.readJSON('storage/forums' + forum + '/' + thread);
+            //console.log(data);
                 json.push({
                     title: data.title,
                     content: data.content,
-                    username: data.author,
+                    username: data.username,
                     date: data.date
                 });
             });

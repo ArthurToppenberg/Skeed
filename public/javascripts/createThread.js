@@ -3,6 +3,8 @@
 //get funciton from loadThreads.js
 import {loadThreads} from '/javascripts/loadThreads.js';
 
+document.querySelector('#newThread').addEventListener('click', newthread);
+
 function newthread(){
     if(document.getElementById('newthread') == undefined){
     //ui to make new thread
@@ -75,7 +77,7 @@ function newthread(){
                 document.getElementById('forum-content').removeChild(document.getElementById('newthread'));
 
                 //call other script to reload threads
-                //loadThreads();
+                loadThreads();
 
             }else{
                 

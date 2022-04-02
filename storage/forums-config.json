@@ -1,24 +1,17 @@
 {
     "forums" : [
+        "/bug",
         "/introduce",
-        "/main", 
-        "/random",
-        "/sports",
-        "/movies",
-        "/music",
-        "/tv",
+        "/help",
         "/games",
-        "/anime",
-        "/pics",
-        "/books",
-        "/comics",
-        "/lounge",
-        "/gossip",
-        "/offtopic",
-        "/diy",
-        "/food",
-        "/celebs",
-        "/history",
-        "/random"
+        "/memes",
+        "/music",
+        "/politics",
+        "/askAnything",
+        "/random",
+        "/programming",
+        "/funny",
+        "/politicalyIncorrect",
+        "/links"
         ]
 }
