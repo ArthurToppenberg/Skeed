@@ -68,11 +68,9 @@ function newthread(){
             method: 'POST',
             body: new URLSearchParams(new FormData(e.target)) // event.target is the form
         }).then((resp) => {
-            //console.log(resp);
             return resp.json(); 
         })
         .then((data) => {
-            console.log(data);
             if(data.title == true && data.content == true && data.username == true){
                 document.getElementById('forum-content').removeChild(document.getElementById('newthread'));
 
@@ -95,8 +93,10 @@ function newthread(){
                     document.getElementById('newthreadform').children[1].style.border = 'none';
                 }
 
+                console.log(data.username);
+
                 //if error with username
-                if(data.username == false){
+                if(!data.username){
                     alert('You must be logged in to create a thread');
                 }
             }

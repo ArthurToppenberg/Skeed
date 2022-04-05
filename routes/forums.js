@@ -17,7 +17,6 @@ router.get('/allForums', function(req, res, next) {
 forums.forEach(forum => {
     //create a new route for each forum
     router.get(forum, function(req, res, next) {
-        if(validateSession(req)){
             req.session.forum = forum;
             res.render('forum', { 
             title: forum,
@@ -26,23 +25,17 @@ forums.forEach(forum => {
             page: forum,
             username: req.session.username
             });
-        }else{
-            res.redirect('/login');
-        }
     });
 });
 
 //create new thread in forum
 router.post('/newThread', function(req, res, next) {
-    if(validateSession(req)){
         //get the forum name
         const forum = req.session.forum;
         //get the thread title
         const title = req.body.title;
         //get the thread content
         const content = req.body.content;
-        //get the thread author
-        const author = req.session.username;
         //get the thread date
         const date = new Date();
         //get the thread id
@@ -68,8 +61,9 @@ router.post('/newThread', function(req, res, next) {
         if(content != '' && content != '<p><br></p>' && content.length > 10 && content.length < 1000){
             contentValidation = true;
         }
+
         //if the author is not the same as the session username
-        if(author == req.session.username){
+        if(req.session.username != undefined){
             authorValidation = true;
         }
 
@@ -83,14 +77,9 @@ router.post('/newThread', function(req, res, next) {
             //save .json file
             storageManager.writeJSON('storage/forums' + forum + '/' + id + '.json', thread);
         }
-
-    }else{
-        res.redirect('/login');
-    }
 });
 
 router.get('/getThreads', function(req, res, next) {
-    if(validateSession(req)){
         var json = [];
         //get the forum name
         const forum = req.session.forum;
@@ -99,7 +88,6 @@ router.get('/getThreads', function(req, res, next) {
         threads.pop();
         threads.forEach(thread => {
             const data = storageManager.readJSON('storage/forums' + forum + '/' + thread);
-            //console.log(data);
                 json.push({
                     title: data.title,
                     content: data.content,
@@ -109,10 +97,6 @@ router.get('/getThreads', function(req, res, next) {
             });
 
         res.json({threads: json});
-
-    }else{
-        res.redirect('/login');
-    }
 });
 
 

@@ -29,7 +29,6 @@ function showThreads(threads){
         const content = forum.content;
         //get the thread author
         const author = forum.username;
-        console.log(author);
         //get the thread date
         const date = forum.date;
         
