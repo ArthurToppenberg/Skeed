@@ -249,22 +249,55 @@ a {
   position: absolute;
   top: 0px;
   right: 0px;
-  height: 100%;
+  height: 40px;
   width: 200px;
   padding: 0px;
   margin: 0px;
   border-radius: 0px;
   background-color: green;
+  display: flex;
 }
 
 .upvotebutton{
   position: relative;
-  top: 0px;
-  left: 0px;
-  height: 50px;
+  height: 40px;
   width: 50px;
   padding: 0px;
   margin: 0px;
+  background-image: url("../images/thumbs.png");
+  background-size: cover;
+}
+
+.downvotebutton{
+  position: relative;
+  height: 40px;
+  width: 50px;
+  padding: 0px;
+  margin: 0px;
+  background-image: url("../images/thumbs.png");
+  background-size: cover;
+  transform: rotate(180deg);
+}
+
+.voteCounterDiv{
+  position: relative;
+  height: 40px;
+  width: 100px;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  background-color: black;
+}
+
+.voteCounter{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: 0px;
+  margin: 0px;
+  color: white;
+  font-size: 20px;
 }
 
 /*

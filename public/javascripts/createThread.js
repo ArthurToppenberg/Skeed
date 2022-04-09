@@ -1,7 +1,7 @@
 //create new thread in forum
 
 //get funciton from loadThreads.js
-import {loadThreads} from '/javascripts/loadThreads.js';
+import {post} from '/javascripts/loadThreads.js';
 
 document.querySelector('#newThread').addEventListener('click', newthread);
 
@@ -61,7 +61,7 @@ function newthread(){
     form.appendChild(content);
     form.appendChild(submit);
     createThreadDiv.appendChild(form);
-    }
+
     document.forms['newthreadform'].addEventListener('submit', (e) => {
         e.preventDefault();
         fetch(e.target.action, {
@@ -75,7 +75,7 @@ function newthread(){
                 document.getElementById('forum-content').removeChild(document.getElementById('newthread'));
 
                 //call other script to reload threads
-                loadThreads();
+                post('./loadThreads', post('/forums/getThreads', showThreads));
 
             }else{
                 
@@ -93,8 +93,6 @@ function newthread(){
                     document.getElementById('newthreadform').children[1].style.border = 'none';
                 }
 
-                console.log(data.username);
-
                 //if error with username
                 if(!data.username){
                     alert('You must be logged in to create a thread');
@@ -102,5 +100,6 @@ function newthread(){
             }
         })
     });
+}
 }
 

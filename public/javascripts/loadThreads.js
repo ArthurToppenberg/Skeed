@@ -1,16 +1,13 @@
 //load threads in forum page
 
-function loadThreads(){
-
-    const dir = '/forums/getThreads';
-
-    //make post request to server and display all threads in forum
-    fetch(dir)
+//make post request to server
+function post(path, cb){
+    fetch(path)
     .then((response) => {
         //console.log(response);
         return response.json();
     }).then((json) => {
-        showThreads(json.threads);
+        cb(json.threads);
     });
 }
 
@@ -31,6 +28,10 @@ function showThreads(threads){
         const author = forum.username;
         //get the thread date
         const date = forum.date;
+        //get votes
+        const vote = forum.vote;
+        //get the thread id
+        const id = forum.id;
         
         //create div for thread
         var div = document.createElement('div');
@@ -67,14 +68,20 @@ function showThreads(threads){
         voteButtonsDiv.className = 'voteButtonsDiv';
         
         //upvote button
-        const upvoteIcon = document.createElement('i');
-        upvoteIcon.className = 'upvotebutton';
-        upvoteIcon.src =  '../images/thumbs.png';
+        const upvoteButton = document.createElement('button');
+        upvoteButton.className = 'upvotebutton';
 
         //down vote button
-        const downvoteIcon = document.createElement('i');
-        downvoteIcon.className = 'downvotebutton';
-        downvoteIcon.src =  '../images/thumbs.png';
+        const downvoteButton = document.createElement('button');
+        downvoteButton.className = 'downvotebutton';
+
+        //div for vote counter
+        const voteCounterDiv = document.createElement('div');
+        voteCounterDiv.className = 'voteCounterDiv';
+        //vote counter
+        const voteCounter = document.createElement('p');
+        voteCounter.className = 'voteCounter';
+        voteCounter.innerHTML = vote;
 
         //create p for thread author
         var authorhtml = document.createElement('p');
@@ -91,12 +98,43 @@ function showThreads(threads){
         div.appendChild(contenthtml);
         threadFooter.appendChild(authorhtml);
         threadFooter.appendChild(datehtml);
-        voteButtonsDiv.appendChild(upvoteIcon);
-        voteButtonsDiv.appendChild(downvoteIcon);
+        voteButtonsDiv.appendChild(upvoteButton);
+        voteButtonsDiv.appendChild(voteCounterDiv);
+        voteCounterDiv.appendChild(voteCounter);
+        voteButtonsDiv.appendChild(downvoteButton);
         threadFooter.appendChild(voteButtonsDiv);
         div.appendChild(threadFooter);
 
         forumContent.appendChild(div);
+
+        upvoteButton.addEventListener('click', function(){
+            updownVoteSend(id, 'up');
+        });
+
+        downvoteButton.addEventListener('click', function(){
+            updownVoteSend(id, 'down');
+        });
+
+        //send up or down vote to server
+        function updownVoteSend(id, vote){
+            
+            //send data to server
+            const data = {vote:vote, id:id};
+
+            // Creates a promise object for sending the desired data
+            fetch("/forums/vote",{
+                method: "POST",
+                // Format of the body must match the Content-Type
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+
+            //reload threads
+            post("/forums/getThreads", function(threads){
+                showThreads(threads);
+            });
+        }
+
     });
 }
 
@@ -108,6 +146,6 @@ function removeExistingThreads(){
 }
 
 //when the page loads call loadThreads
-window.addEventListener('load', loadThreads);
+window.addEventListener('load', post('/forums/getThreads', showThreads));
 
-export {loadThreads};
+export {post};

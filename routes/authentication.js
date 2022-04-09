@@ -8,7 +8,12 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-router.use(session({secret: 'ajhmudihabibi', resave: false, saveUninitialized: false, cookie: { maxAge: 60*60*1000 }}));
+router.use(session({
+  secret: 'ajhmudihabibi', 
+  resave: true, 
+  saveUninitialized: false, 
+  cookie: { maxAge: 60*60*1000 }
+}));
 
 const validateNewAccount = require('../src/validateNewAccount');
 const loginValidation = require('../src/loginValidation');
