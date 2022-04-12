@@ -4,7 +4,6 @@
 function post(path, cb){
     fetch(path)
     .then((response) => {
-        //console.log(response);
         return response.json();
     }).then((json) => {
         cb(json.threads);
@@ -32,6 +31,8 @@ function showThreads(threads){
         const vote = forum.vote;
         //get the thread id
         const id = forum.id;
+        //get the thread user vote
+        const uservote = forum.uservote;
         
         //create div for thread
         var div = document.createElement('div');
@@ -70,10 +71,12 @@ function showThreads(threads){
         //upvote button
         const upvoteButton = document.createElement('button');
         upvoteButton.className = 'upvotebutton';
+        upvoteButton.style.backgroundColor = '#00ff00';
 
         //down vote button
         const downvoteButton = document.createElement('button');
         downvoteButton.className = 'downvotebutton';
+        downvoteButton.style.backgroundColor = '#ff0000';
 
         //div for vote counter
         const voteCounterDiv = document.createElement('div');
@@ -81,7 +84,6 @@ function showThreads(threads){
         //vote counter
         const voteCounter = document.createElement('p');
         voteCounter.className = 'voteCounter';
-        voteCounter.innerHTML = vote;
 
         //create p for thread author
         var authorhtml = document.createElement('p');
@@ -127,14 +129,36 @@ function showThreads(threads){
                 // Format of the body must match the Content-Type
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(data)
-            });
-
-            //reload threads
-            post("/forums/getThreads", function(threads){
-                showThreads(threads);
+            }).then((response) => {
+                return response.json();
+            }).then((data) => {
+                updateVoteDiv(data.votes, data.uservote);
             });
         }
 
+        //function to updata vote div
+        function updateVoteDiv(votes, userV){
+           //change colors of vote buttons depending on the user's vote
+            if(userV == 'up'){
+                voteCounterDiv.style.backgroundColor = '#00ff00';
+            }
+            else if(userV == 'down'){
+                voteCounterDiv.style.backgroundColor = '#ff0000';
+            }
+            else if(userV == 'guest'){ //diable both buttons if user has not voted
+                //gray color
+                upvoteButton.style.backgroundColor = '#2E382E';
+                upvoteButton.disabled = true;
+                downvoteButton.style.backgroundColor = '#2E382E';
+                downvoteButton.disabled = true;
+            }else{
+                voteCounterDiv.style.backgroundColor = '#2E382E';
+            }
+            voteCounter.innerHTML = votes;
+        }
+
+        //initial update of vote div
+        updateVoteDiv(vote, uservote);
     });
 }
 

@@ -75,7 +75,7 @@ function newthread(){
                 document.getElementById('forum-content').removeChild(document.getElementById('newthread'));
 
                 //call other script to reload threads
-                post('./loadThreads', post('/forums/getThreads', showThreads));
+                post('/forums/getThreads', showThreads);
 
             }else{
                 

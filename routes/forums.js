@@ -6,11 +6,7 @@ const storageManager = require('../storage/storageManager');
 const forums = storageManager.readJSON('storage/forums-config.json').forums;
 
 router.get('/allForums', function(req, res, next) {
-  if(validateSession(req)){
     res.json({forums: forums});
-  }else{
-      res.redirect('/login');
-  }
 });
 
 //dynamicaly create rules for each forum
@@ -62,7 +58,8 @@ router.post('/newThread', function(req, res, next) {
             date: date,
             id: id,
             vote: 0,
-            usersvoted: []
+            usersvoted: [],
+            uservote: []
         };
 
         var titleValidation = false;
@@ -108,7 +105,7 @@ router.get('/getThreads', function(req, res, next) {
 
         //sort array with most votes at top
         threads.sort(function(a, b){
-            return b.vote - a.vote;
+            return storageManager.readJSON('storage/forums' + forum + '/' + b).vote - storageManager.readJSON('storage/forums' + forum + '/' + a).vote;
         });
 
         console.log(threads);
@@ -116,14 +113,22 @@ router.get('/getThreads', function(req, res, next) {
         //send each thread to the client
         threads.forEach(thread => {
             const data = storageManager.readJSON('storage/forums' + forum + '/' + thread);
+            var uservote;
+            if(req.session.username != undefined){
+                uservote = data.uservote[data.usersvoted.indexOf(req.session.username)];
+            }else{
+                uservote = 'guest';
+            }
                 json.push({
                     title: data.title,
                     content: data.content,
                     username: data.username,
                     date: data.date,
                     vote: data.vote,
-                    id: data.id
-                });
+                    id: data.id,
+                    uservote: uservote
+                    }
+                );
             });
 
         res.json({threads: json});
@@ -137,32 +142,50 @@ router.post('/vote', function(req, res, next) {
         const id = req.body.id;
         const vote = req.body.vote;
         const forum = req.session.forum;
-        //check user has not alread voted
-        const usersvoted = storageManager.readJSON('storage/forums' + forum + '/' + id + '.json').usersvoted;
+        const data = storageManager.readJSON('storage/forums' + forum + '/' + id + '.json');
         //up or down vote and check if user has already voted
-            if(vote == 'up' && !usersvoted.includes(req.session.username)){
-                const data = storageManager.readJSON('storage/forums' + forum + '/' + id + '.json');
+            if(vote == 'up' && !data.usersvoted.includes(req.session.username)){ // has not voted and wants to vote up
+                //increase vote
                 data.vote++;
+                //add username to usersvoted array
                 data.usersvoted.push(req.session.username);
+                //add vote value to uservote array
+                data.uservote.push('up');
+                //save thread
                 storageManager.writeJSON('storage/forums' + forum + '/' + id + '.json', data);
-            }else if(vote == 'down' && usersvoted.includes(req.session.username)){
-                const data = storageManager.readJSON('storage/forums' + forum + '/' + id + '.json');
+            }else if(vote == 'down' && !data.usersvoted.includes(req.session.username)){ // has not voted and wants to vote up
+                //increase vote
                 data.vote--;
-                const index = data.usersvoted.indexOf(req.session.username);
-                data.usersvoted.splice(index, 1);
-                storageManager.writeJSON('storage/forums' + forum + '/' + id + '.json', data);
-            }else if(vote == 'down' && !usersvoted.includes(req.session.username)){
-                const data = storageManager.readJSON('storage/forums' + forum + '/' + id + '.json');
-                data.vote--;
+                //add username to usersvoted array
                 data.usersvoted.push(req.session.username);
+                //add vote value to uservote array
+                data.uservote.push('down');
+                //save thread
                 storageManager.writeJSON('storage/forums' + forum + '/' + id + '.json', data);
-            }else if(vote == 'up' && usersvoted.includes(req.session.username)){
-                const data = storageManager.readJSON('storage/forums' + forum + '/' + id + '.json');
+            }else if(vote == 'up' && data.uservote[data.usersvoted.indexOf(req.session.username)] == 'down'){
+                //decrease vote
                 data.vote++;
+                //get index of username in usersvoted array
                 const index = data.usersvoted.indexOf(req.session.username);
+                //remove username from usersvoted array
                 data.usersvoted.splice(index, 1);
+                //remove uservote from uservote array at same index
+                data.uservote.splice(index, 1);
+                //save thread
+                storageManager.writeJSON('storage/forums' + forum + '/' + id + '.json', data); 
+            }else if(vote == 'down' && data.uservote[data.usersvoted.indexOf(req.session.username)] == 'up'){
+                //decrease vote
+                data.vote--;
+                //get index of username in usersvoted array
+                const index = data.usersvoted.indexOf(req.session.username);
+                //remove username from usersvoted array
+                data.usersvoted.splice(index, 1);
+                //remove uservote from uservote array at same index
+                data.uservote.splice(index, 1);
+                //save thread
                 storageManager.writeJSON('storage/forums' + forum + '/' + id + '.json', data);
             }
+        res.json({votes: data.vote, uservote: data.uservote[data.usersvoted.indexOf(req.session.username)]});
     }
 }); 
 

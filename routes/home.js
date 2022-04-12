@@ -3,17 +3,22 @@ var router = express.Router();
 const validateSession = require('../src/validateSession');
 
 router.get('/', function(req, res, next) {
-    
     if(validateSession(req)){
-        res.render('home', { 
-        title: 'Home',
-        logo: 'images/logo_transparent.png',
-        settingsIcon: 'images/settingsIcon.png',
-        page: 'Directory',
-        username: req.session.username
+        res.render('Home', { 
+            title: 'Home',
+            logo: '../images/logo_transparent.png',
+            settingsIcon: '../images/settingsIcon.png',
+            page: 'Home',
+            username: req.session.username
         });
     }else{
-        res.redirect('/login');
+        res.render('Home', { 
+            title: 'Home',
+            logo: '../images/logo_transparent.png',
+            settingsIcon: '../images/settingsIcon.png',
+            page: 'Home',
+            username: "Guest"
+        });
     }
 });
 
