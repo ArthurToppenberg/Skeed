@@ -1,0 +1,31 @@
+{
+  "forum": "/bug",
+  "title": "Hej mami",
+  "content": "MAMI MAMI\nMAMI MAMI\nMAMI MAMI\nMAMI MAMI\nMAMI MAMI\nMAMI MAMI\nMAMI MAMI\nMAMI MAMI\nMAMI MAMI",
+  "username": "arthur",
+  "date": "2022-04-13T14:58:29.350Z",
+  "id": 1649861909350,
+  "vote": 0,
+  "usersvote": [
+    {
+      "username": "Mammi",
+      "vote": "up"
+    },
+    {
+      "username": "arthur",
+      "vote": "down"
+    }
+  ],
+  "comments": [
+    {
+      "username": "arthur",
+      "content": "MAMMMIIII",
+      "date": "2022-04-13T15:01:30.288Z"
+    },
+    {
+      "username": "Mammi",
+      "content": "Keg er din Mammo og det er jeg glad for. ",
+      "date": "2022-04-13T15:03:14.393Z"
+    }
+  ]
+}

@@ -1,21 +1,51 @@
 //load threads in forum page
 
+//import commets scripts
+import {getComments} from '/javascripts/loadComments.js';
+
 //make post request to server
 function post(path, cb){
     fetch(path)
     .then((response) => {
         return response.json();
     }).then((json) => {
-        cb(json.threads);
+        cb(json);
     });
 }
 
 //show threads on forum page
-function showThreads(threads){
+function showThreads(data){
+
+    const threads = data.threads;
 
     removeExistingThreads();
 
     const forumContent = document.getElementById('forum-content');
+
+    // tell unauthenticated users to do so
+    if(!data.authenticated){
+        var div = document.createElement('div');
+        div.className = 'thread';
+        div.style.width = '100%';
+        div.style.transform = 'translateX(-5px)';
+        div.style.backgroundColor = 'white';
+        div.style.padding = '5px';
+        div.style.borderRadius = '5px';
+        div.style.marginBottom = '10px';
+
+        const threadHeader = document.createElement('div');
+        threadHeader.className = 'threadHeader';
+        threadHeader.style.height = '20px';
+
+        //create h3 for thread title
+        var titlehtml = document.createElement('h3');
+        titlehtml.innerHTML = 'Login to create threads and comments';
+        titlehtml.style.margin = '0px';
+
+        div.appendChild(threadHeader);
+        threadHeader.appendChild(titlehtml);
+        forumContent.appendChild(div);
+    }
 
     //get each thread
     threads.forEach(forum => {
@@ -33,6 +63,8 @@ function showThreads(threads){
         const id = forum.id;
         //get the thread user vote
         const uservote = forum.uservote;
+        //get number of comments
+        const comments = forum.comments;
         
         //create div for thread
         var div = document.createElement('div');
@@ -95,11 +127,18 @@ function showThreads(threads){
         var datehtml = document.createElement('p');
         datehtml.innerHTML = 'Date: ' + date;
 
+        //open comments button
+        const openCommentsButton = document.createElement('button');
+        openCommentsButton.className = 'openCommentsButton';
+        openCommentsButton.innerHTML = 'Open Comments (' + comments + ')';
+
+
         threadHeader.appendChild(titlehtml);
         div.appendChild(threadHeader);
         div.appendChild(contenthtml);
         threadFooter.appendChild(authorhtml);
         threadFooter.appendChild(datehtml);
+        threadFooter.appendChild(openCommentsButton);
         voteButtonsDiv.appendChild(upvoteButton);
         voteButtonsDiv.appendChild(voteCounterDiv);
         voteCounterDiv.appendChild(voteCounter);
@@ -115,6 +154,25 @@ function showThreads(threads){
 
         downvoteButton.addEventListener('click', function(){
             updownVoteSend(id, 'down');
+        });
+        
+        //create comments div under thread for comments and comment from server
+        var open = false;
+        openCommentsButton.addEventListener('click', function(){
+            if(open){// remove comment box
+                open = false;
+                openCommentsButton.innerHTML = 'Open Comments (' + comments + ')';
+                div.removeChild(commentsDiv);
+            }else{ // make comment box
+                open = true;
+                //make comments div
+                const commentsDiv = document.createElement('div');
+                commentsDiv.className = 'commentsDiv';
+                commentsDiv.id = 'commentsDiv';
+                openCommentsButton.innerHTML = 'Close Comments';
+                div.appendChild(commentsDiv);
+                getComments(commentsDiv, id); //loads comments 
+            } 
         });
 
         //send up or down vote to server
@@ -141,9 +199,11 @@ function showThreads(threads){
            //change colors of vote buttons depending on the user's vote
             if(userV == 'up'){
                 voteCounterDiv.style.backgroundColor = '#00ff00';
+                voteCounter.style.color = '#000000';
             }
             else if(userV == 'down'){
                 voteCounterDiv.style.backgroundColor = '#ff0000';
+                voteCounter.style.color = '#000000';
             }
             else if(userV == 'guest'){ //diable both buttons if user has not voted
                 //gray color
@@ -153,6 +213,7 @@ function showThreads(threads){
                 downvoteButton.disabled = true;
             }else{
                 voteCounterDiv.style.backgroundColor = '#2E382E';
+                voteCounter.style.color = '#FFFFFF';
             }
             voteCounter.innerHTML = votes;
         }
@@ -160,6 +221,7 @@ function showThreads(threads){
         //initial update of vote div
         updateVoteDiv(vote, uservote);
     });
+
 }
 
 function removeExistingThreads(){
@@ -172,4 +234,4 @@ function removeExistingThreads(){
 //when the page loads call loadThreads
 window.addEventListener('load', post('/forums/getThreads', showThreads));
 
-export {post};
+export {post, showThreads};

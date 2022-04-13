@@ -1,0 +1,26 @@
+{
+  "forum": "/funny",
+  "title": "Dette er en joke ",
+  "content": "Hvad er det der er hvidt når det flyver op og gult når det kommer med ?",
+  "username": "Mammi",
+  "date": "2022-04-13T15:05:39.302Z",
+  "id": 1649862339302,
+  "vote": 2,
+  "usersvote": [
+    {
+      "username": "Mammi",
+      "vote": "up"
+    },
+    {
+      "username": "arthur",
+      "vote": "up"
+    }
+  ],
+  "comments": [
+    {
+      "username": "arthur",
+      "content": "hhhhhHhhHhHhhahahahahahahahaha",
+      "date": "2022-04-13T15:07:28.763Z"
+    }
+  ]
+}

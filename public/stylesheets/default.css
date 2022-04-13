@@ -54,6 +54,12 @@ a {
   height: auto;
 }
 
+.side-bar-info {
+  position: relative;
+  height: 100px;
+  width: 100%;
+}
+
 .social-bar{
   position: relative;
   top: 25px;
@@ -298,6 +304,92 @@ a {
   margin: 0px;
   color: white;
   font-size: 20px;
+}
+
+.openCommentsButton{
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%);
+  height: 40px;
+  width: 20%;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  background-color: #2E382E;
+  color: white;
+} 
+
+.commentsDiv {
+  position: relative;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%);
+  height: auto;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  background-color: #1a1f1a;
+  display: flexbox;
+}
+
+.commentDiv {
+  position: relative;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%);
+  height: auto;
+  width: auto;
+  padding: 5px;
+  margin-top: 2px;
+  border-radius: 0px;
+  background-color: #2E382E;
+  border-radius: 10px;
+  color: white;
+  white-space: pre-wrap;
+}
+
+.commentButton {
+  position: relative;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%);
+  height: 40px;
+  width: 20%;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  background-color: #2E382E;
+  color: white;
+}
+
+.commentTextArea {
+  position: relative;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%);
+  height: 70px;
+  width: 95%;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  background-color: #2E382E;
+  color: white;
+}
+
+.commentSubmitButton {
+  position: relative;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%);
+  height: 30px;
+  width: 20%;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  background-color: white;
+  color: #2E382E;
 }
 
 /*

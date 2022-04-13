@@ -1,0 +1,20 @@
+{
+  "forum": "/bug",
+  "title": "Første dag i Granada ",
+  "content": "Hola \nI dag er den første dag i Granada med min familie. Glæder mig til at spise tapas.",
+  "username": "Mammi",
+  "date": "2022-04-13T15:02:08.862Z",
+  "id": 1649862128862,
+  "vote": 2,
+  "usersvote": [
+    {
+      "username": "Mammi",
+      "vote": "up"
+    },
+    {
+      "username": "arthur",
+      "vote": "up"
+    }
+  ],
+  "comments": []
+}

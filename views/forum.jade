@@ -4,7 +4,8 @@ html
     title= title
     script(type='module' src='/javascripts/createThread.js')
     script(type='module' src='/javascripts/loadThreads.js')
-    script(type='module' src='/javascripts/updownVote.js')
+    //script(type='module' src='/javascripts/loadComment.js')
+    //script(type='module' src='/javascripts/createComment.js')
     link(rel='stylesheet', href='/stylesheets/default.css')
   body
     block content
@@ -28,7 +29,8 @@ html
     
     //content
     p(class='title')= page
-    button(class='button', id='newThread' )= 'New Thread'
+    if(authenticated)
+      button(class='button', id='newThread' )= 'New Thread'
     div(class='forum-content', id='forum-content')
 
       

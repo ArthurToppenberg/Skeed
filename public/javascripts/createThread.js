@@ -1,7 +1,7 @@
 //create new thread in forum
 
 //get funciton from loadThreads.js
-import {post} from '/javascripts/loadThreads.js';
+import {post, showThreads} from '/javascripts/loadThreads.js';
 
 document.querySelector('#newThread').addEventListener('click', newthread);
 
