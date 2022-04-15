@@ -3,6 +3,7 @@ html
   head
     title= title
     script(type='text/javascript' src='/javascripts/loadAllForums.js')
+    script(type='module' src='/javascripts/socialHub.js')
     link(rel='stylesheet', href='/stylesheets/default.css')
   body
     block content
@@ -17,13 +18,10 @@ html
           a(href='/home/settings', class= "settings-link")
             img(src=logoutIcon, class= "logout-icon")
             p(class='text')= username
-        
-        div(class='social-bar')
-          p(class='text background')= 'Followers: '
-          p(class='text background')= 'Following: '
-          p(class='text background')= 'Likes: '
     
     //content
     p(class='title')= page
     div(class='forums-div', id='forums')
+
+    div(class='navbar-bottom', id='navbar-bottom')
       

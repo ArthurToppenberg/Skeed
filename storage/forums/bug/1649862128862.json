@@ -5,7 +5,7 @@
   "username": "Mammi",
   "date": "2022-04-13T15:02:08.862Z",
   "id": 1649862128862,
-  "vote": 2,
+  "vote": 1,
   "usersvote": [
     {
       "username": "Mammi",
@@ -13,8 +13,18 @@
     },
     {
       "username": "arthur",
+      "vote": "down"
+    },
+    {
+      "username": "adminn",
       "vote": "up"
     }
   ],
-  "comments": []
+  "comments": [
+    {
+      "username": "adminn",
+      "content": "New comment boi",
+      "date": "2022-04-14T11:10:56.228Z"
+    }
+  ]
 }

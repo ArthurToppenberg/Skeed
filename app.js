@@ -6,6 +6,7 @@ var usersRouter = require('./routes/schematic');
 var pageNotFoundRouter = require('./routes/pageNotFound');
 var homeRouter = require('./routes/home');
 var forums = require('./routes/forums');
+var social = require('./routes/social');
 
 var app = express();
 
@@ -19,6 +20,7 @@ app.use('/', authenticationRouter);
 app.use('/users', usersRouter);
 app.use('/home', homeRouter);
 app.use('/forums', forums);
+app.use('/social', social);
 
 //if non of the pages responded use pageNotFoundRouter
 app.use('*', pageNotFoundRouter);

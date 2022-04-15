@@ -1,4 +1,11 @@
 {
   "username": "arthur",
-  "password": "bu@a9FXvVRZHBh4"
+  "password": "P@bBE2LuwSMNNFT",
+  "followers": [],
+  "following": [
+    "user1",
+    "user2",
+    "user4",
+    "user5"
+  ]
 }

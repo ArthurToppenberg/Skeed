@@ -19,7 +19,9 @@ function validate(username, password, password_confirmation) {
     ) {
         storageManager.writeJSON(`./storage/users/${username}.json`, {
             username: username,
-            password: password
+            password: password,
+            followers: [],
+            following: []
         });
         return true;
     } else {

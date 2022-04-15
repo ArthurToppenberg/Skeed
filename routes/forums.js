@@ -93,12 +93,18 @@ router.post('/newThread', function(req, res, next) {
 });
 
 //get all threads in forum
-router.get('/getThreads', function(req, res, next) {
+router.post('/getThreads', function(req, res, next) {
+        //config ----
+        const threadChunkSize = 5;
+        //-----
+
         var json = [];
         //get the forum name
         const forum = req.session.forum;
         //get all the threads in the forum
         const threads = storageManager.readDir('storage/forums' + forum);
+        //get thread chuck (a number of threads)
+        const threadChunk = req.body.threadChunk;
         
         //remove config file from forum
         threads.pop();
@@ -108,40 +114,46 @@ router.get('/getThreads', function(req, res, next) {
             return storageManager.readJSON('storage/forums' + forum + '/' + b).vote - storageManager.readJSON('storage/forums' + forum + '/' + a).vote;
         });
 
-        //send each thread to the client
-        threads.forEach(thread => {
-            const data = storageManager.readJSON('storage/forums' + forum + '/' + thread);
-            var uservote;
-            if(req.session.username != undefined){
-                var votedUsernames = [];
-                data.usersvote.forEach(data => {
-                    votedUsernames.push(data.username);
-                });
-                if(data.usersvote[votedUsernames.indexOf(req.session.username)] == undefined){
-                    uservote = undefined;
-                }else{
-                    uservote = data.usersvote[votedUsernames.indexOf(req.session.username)].vote;
-                }  
-            }else{
-                uservote = 'guest';
-            }
-            json.push({
-                title: data.title,
-                content: data.content,
-                username: data.username,
-                date: data.date,
-                vote: data.vote,
-                id: data.id,
-                uservote: uservote,
-                comments: data.comments.length
-            });
-        });
+        var endReached = false;
 
-            if(validateSession(req)){
-                res.json({threads: json, authenticated: true});
+        //send selected thread chuck to client
+        for (let i = threadChunk*threadChunkSize; i < (threadChunk*threadChunkSize) + threadChunkSize; i++) {
+            if(i < threads.length){
+                const thread = threads[i];
+                const data = storageManager.readJSON('storage/forums' + forum + '/' + thread);
+                var uservote;
+                if(req.session.username != undefined){
+                    var votedUsernames = [];
+                    data.usersvote.forEach(data => {
+                        votedUsernames.push(data.username);
+                    });
+                    if(data.usersvote[votedUsernames.indexOf(req.session.username)] == undefined){
+                        uservote = undefined;
+                    }else{
+                        uservote = data.usersvote[votedUsernames.indexOf(req.session.username)].vote;
+                    }  
+                }else{
+                    uservote = 'guest';
+                }
+                json.push({
+                    title: data.title,
+                    content: data.content,
+                    username: data.username,
+                    date: data.date,
+                    vote: data.vote,
+                    id: data.id,
+                    uservote: uservote,
+                    comments: data.comments.length
+                });
             }else{
-                res.json({threads: json, authenticated: false});
-            }
+                endReached = true;
+            }   
+        }
+        if(validateSession(req)){
+            res.json({threads: json, authenticated: true, endReached: endReached});
+        }else{
+            res.json({threads: json, authenticated: false, endReached: endReached});
+        }
 });
 
 //up and downvote buttons for thread
@@ -192,6 +204,7 @@ router.post('/vote', function(req, res, next) {
                 //save thread
                 storageManager.writeJSON('storage/forums' + forum + '/' + id + '.json', data);
             }
+        var votedUsernames = [];
         data.usersvote.forEach(data => {
             votedUsernames.push(data.username);
         });

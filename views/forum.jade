@@ -4,8 +4,6 @@ html
     title= title
     script(type='module' src='/javascripts/createThread.js')
     script(type='module' src='/javascripts/loadThreads.js')
-    //script(type='module' src='/javascripts/loadComment.js')
-    //script(type='module' src='/javascripts/createComment.js')
     link(rel='stylesheet', href='/stylesheets/default.css')
   body
     block content
@@ -20,12 +18,6 @@ html
           a(href='../home/settings', class= "settings-link")
             img(src=logoutIcon, class= "logout-icon")
             p(class='text')= username
-        
-        //social bar
-        div(class='social-bar')
-          p(class='text background')= 'Followers: '
-          p(class='text background')= 'Following: '
-          p(class='text background')= 'Likes: '
     
     //content
     p(class='title')= page

@@ -3,27 +3,41 @@
 //import commets scripts
 import {getComments} from '/javascripts/loadComments.js';
 
-//make post request to server
-function post(path, cb){
-    fetch(path)
-    .then((response) => {
-        return response.json();
-    }).then((json) => {
-        cb(json);
-    });
-}
+var loadedThreadChunk = 0;
+var reachedBottomOfForum = false;
 
 //show threads on forum page
-function showThreads(data){
+function showThreads(){
+
+    //request correct chunk thread depending on how far down the user has scrolled on the page
+    const data = {threadChunk: loadedThreadChunk};
+
+    //get threads from server
+    fetch('/forums/getThreads', {
+        method: "POST",
+        // Format of the body must match the Content-Type
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    }).then((response) => {
+        return response.json();
+    }).then((data) => {
 
     const threads = data.threads;
 
-    removeExistingThreads();
+    reachedBottomOfForum = data.endReached;
+
+    //removeExistingThreads();
 
     const forumContent = document.getElementById('forum-content');
 
     // tell unauthenticated users to do so
     if(!data.authenticated){
+
+        //remove old div   
+        if(document.getElementById('login-notification') != null){
+            forumContent.removeChild(document.getElementById('login-notification'));
+        }
+
         var div = document.createElement('div');
         div.className = 'thread';
         div.style.width = '100%';
@@ -32,6 +46,7 @@ function showThreads(data){
         div.style.padding = '5px';
         div.style.borderRadius = '5px';
         div.style.marginBottom = '10px';
+        div.id = 'login-notification';
 
         const threadHeader = document.createElement('div');
         threadHeader.className = 'threadHeader';
@@ -44,7 +59,7 @@ function showThreads(data){
 
         div.appendChild(threadHeader);
         threadHeader.appendChild(titlehtml);
-        forumContent.appendChild(div);
+        forumContent.prepend(div);
     }
 
     //get each thread
@@ -222,6 +237,19 @@ function showThreads(data){
         updateVoteDiv(vote, uservote);
     });
 
+    //add load more button if there are more threads left
+    if(!reachedBottomOfForum){
+        const loadMoreButton = document.createElement('button');
+        loadMoreButton.className = 'loadMoreButton';
+        loadMoreButton.innerHTML = 'Load More';
+        forumContent.appendChild(loadMoreButton);
+        loadMoreButton.addEventListener('click', function(){
+            loadMoreButton.remove();
+            showThreads();
+        });
+    }
+    loadedThreadChunk++;
+});
 }
 
 function removeExistingThreads(){
@@ -229,9 +257,10 @@ function removeExistingThreads(){
     while (forumContent.firstChild) {
         forumContent.removeChild(forumContent.firstChild);
     }
+    loadedThreadChunk = 0;
 }
 
 //when the page loads call loadThreads
-window.addEventListener('load', post('/forums/getThreads', showThreads));
+window.addEventListener('load', showThreads);
 
-export {post, showThreads};
+export {showThreads, removeExistingThreads};

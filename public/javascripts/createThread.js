@@ -1,7 +1,7 @@
 //create new thread in forum
 
 //get funciton from loadThreads.js
-import {post, showThreads} from '/javascripts/loadThreads.js';
+import {showThreads, removeExistingThreads} from '/javascripts/loadThreads.js';
 
 document.querySelector('#newThread').addEventListener('click', newthread);
 
@@ -75,7 +75,8 @@ function newthread(){
                 document.getElementById('forum-content').removeChild(document.getElementById('newthread'));
 
                 //call other script to reload threads
-                post('/forums/getThreads', showThreads);
+                removeExistingThreads();
+                showThreads();
 
             }else{
                 

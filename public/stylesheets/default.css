@@ -392,6 +392,221 @@ a {
   color: #2E382E;
 }
 
+.bottomTab {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  height: 70px;
+  width: 150px;
+  background-color: black;
+  border-radius: 20px 0px 0px 0px;
+}
+
+.bottomTabButton{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  background-color: inherit;
+  border-color: black;
+}
+
+.socialHub {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  width: 500px;
+  background-color: black;
+  box-shadow: -10px 0px black;
+}
+
+.closeButton {
+  position: absolute;
+  height: 100%;
+  width: 50px;
+  background-color: #9883E5;
+}
+
+.bottomTabText{
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translate(-50%);
+  color: white;
+  font-size: 20px;
+  width: 100%;
+  height: auto;
+}
+
+.socialHubTop{
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  height: 50px;
+  width: 100%;
+  background-color: #3a403a;
+}
+
+.socialHubTitle{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: white;
+  font-size: 30px;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+
+.socialHubFollowersFollowing{
+  position: absolute;
+  top: 270px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: white;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 400px;
+  background-color: #3a403a;
+  display: flex;
+}
+
+.socialHubFollowingFollowers{
+  position: relative;
+  height: 390px;
+  width: 50%;
+  background-color: #3a403a;
+  margin: 5px;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.topNavBar{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 50px;
+  width: 100%;
+  background-color: #2E382E;
+}
+
+.topNavBarText{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: white;
+  font-size: 25px;
+  font-family: monospace;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+
+.topNavBarContent{
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  color: white;
+  height: 340px;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  background-color: red;
+}
+
+.socialHubFriendsDiv{
+  position: absolute;
+  top: 480px;
+  left: 50%;
+  transform: translate(-50%);
+  height: 300px;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  background-color: #3a403a;
+}
+
+.freindsSearchText{
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0%,-50%);
+  color: white;
+  font-size: 20px;
+  height: auto;
+  width: auto;
+  padding: 0px;
+  margin: 0px;
+}
+
+.freindsSearchBar{
+  position: absolute;
+  top: 0px;
+  left: 200px;
+  height: 50px;
+  width: 290px;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  background-color: #2E382E;
+  color: white;
+  font-size: 25px;
+}
+
+.socialHubFriendsResultsDiv{
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%);
+  height: 250;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  display: flexbox;
+}
+
+.socialHubFriendsSearchResultsDivMatch{
+  position: relative;
+  height: 50px;
+  width: 100%;
+  background-color: #2E382E;
+  margin: 5px;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.socialHubFriendsSearchResultsDivMatchUsername{
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0%,-50%);
+  color: white;
+  font-size: 20px;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+}
+
+.socialHubFriendsSearchResultsDivMatchAddButton{
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  height: 50px;
+  width: 50px;
+  padding: 0px;
+  margin: 0px;
+  background-color: green;
+  color: black;
+}
+
 /*
 #2E382E
 #50C9CE
