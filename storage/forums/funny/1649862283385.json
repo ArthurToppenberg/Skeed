@@ -5,7 +5,7 @@
   "username": "arthur",
   "date": "2022-04-13T15:04:43.385Z",
   "id": 1649862283385,
-  "vote": 0,
+  "vote": 1,
   "usersvote": [
     {
       "username": "Mammi",
@@ -14,6 +14,10 @@
     {
       "username": "arthur",
       "vote": "down"
+    },
+    {
+      "username": "Arthurphone",
+      "vote": "up"
     }
   ],
   "comments": []

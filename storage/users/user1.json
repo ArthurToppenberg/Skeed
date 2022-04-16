@@ -2,7 +2,12 @@
   "username": "user1",
   "password": "a9@kLWMRZNpEWAP",
   "followers": [
+    "Arthurphone",
     "arthur"
   ],
-  "following": []
+  "following": [
+    "user2",
+    "arthur",
+    "Arthurphone"
+  ]
 }

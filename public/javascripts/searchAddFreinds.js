@@ -11,7 +11,7 @@ function getClosesetMatch() {
         const data = {inputedUsername: inputedUsername};
 
         //get closest match from server
-        fetch('/social/searchfreinds', {
+        fetch('../social/searchfreinds', {
             method: "POST",
             // Format of the body must match the Content-Type
             headers: {"Content-Type": "application/json"},
@@ -64,7 +64,7 @@ function getClosesetMatch() {
 
                 const data = {username: match};
                 
-                fetch('/social/addFreind', {
+                fetch('../social/addFreind', {
                     method: "POST",
                     // Format of the body must match the Content-Type
                     headers: {"Content-Type": "application/json"},

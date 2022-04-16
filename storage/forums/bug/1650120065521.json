@@ -1,0 +1,16 @@
+{
+  "forum": "/bug",
+  "title": "Test freinds stufff",
+  "content": "skdjfhsldfjsfgs\ndf\ngsdf\ng\nsdf\ngs\ndfg\ns\ndf",
+  "username": "arthur",
+  "date": "2022-04-16T14:41:05.521Z",
+  "id": 1650120065521,
+  "vote": 1,
+  "usersvote": [
+    {
+      "username": "user1",
+      "vote": "up"
+    }
+  ],
+  "comments": []
+}

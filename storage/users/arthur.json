@@ -1,11 +1,13 @@
 {
   "username": "arthur",
   "password": "P@bBE2LuwSMNNFT",
-  "followers": [],
+  "followers": [
+    "Arthurphone",
+    "user1"
+  ],
   "following": [
-    "user1",
-    "user2",
     "user4",
-    "user5"
+    "user5",
+    "user1"
   ]
 }

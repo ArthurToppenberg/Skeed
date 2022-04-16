@@ -393,7 +393,7 @@ a {
 }
 
 .bottomTab {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   right: 0px;
   height: 70px;
@@ -412,7 +412,7 @@ a {
 }
 
 .socialHub {
-  position: absolute;
+  position: fixed;
   top: 0px;
   right: 0px;
   height: 100%;
@@ -512,11 +512,13 @@ a {
   top: 50px;
   left: 0px;
   color: white;
-  height: 340px;
+  max-height: 340px;
   width: 100%;
   padding: 0px;
   margin: 0px;
-  background-color: red;
+  background-color: black;
+  display: flexbox;
+  overflow-y: auto;
 }
 
 .socialHubFriendsDiv{
@@ -605,6 +607,56 @@ a {
   margin: 0px;
   background-color: green;
   color: black;
+}
+
+.followingUnfollowButton{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 50px;
+  width: 50px;
+  padding: 0px;
+  margin: 0px;
+  background-color: red;
+  color: black;
+  font-size: 40px;
+}
+
+.followingDiv{
+  position: relative;
+  height: 50px;
+  width: 100%;
+  padding: 0px;
+  border-radius: 0px;
+  background-color: #2E382E;
+  margin-top: 2px;
+}
+
+.followersDiv{
+  position: relative;
+  height: 50px;
+  width: 100%;
+  padding: 0px;
+  border-radius: 0px;
+  background-color: #2E382E;
+  margin-top: 2px;
+}
+
+.followersFollowButton{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 50px;
+  width: 50px;
+  padding: 0px;
+  margin: 0px;
+  background-color: yellow;
+  color: black;
+  font-size: 40px;
+}
+
+.overflow{
+  overflow: auto;
 }
 
 /*

@@ -1,0 +1,20 @@
+{
+  "forum": "/bug",
+  "title": "This is just a test thread wow",
+  "content": "This is really amazing and this \nis the best thing in the world",
+  "username": "Arthurphone",
+  "date": "2022-04-15T16:50:16.590Z",
+  "id": 1650041416590,
+  "vote": 2,
+  "usersvote": [
+    {
+      "username": "Arthurphone",
+      "vote": "up"
+    },
+    {
+      "username": "user1",
+      "vote": "up"
+    }
+  ],
+  "comments": []
+}

@@ -5,15 +5,19 @@
   "username": "arthur",
   "date": "2022-04-13T14:58:29.350Z",
   "id": 1649861909350,
-  "vote": 0,
+  "vote": 1,
   "usersvote": [
     {
       "username": "Mammi",
       "vote": "up"
     },
     {
-      "username": "arthur",
+      "username": "Arthurphone",
       "vote": "down"
+    },
+    {
+      "username": "user1",
+      "vote": "up"
     }
   ],
   "comments": [
@@ -31,6 +35,11 @@
       "username": "adminn",
       "content": "MAMMIII",
       "date": "2022-04-13T21:19:29.896Z"
+    },
+    {
+      "username": "Arthurphone",
+      "content": "wow the commenting works",
+      "date": "2022-04-15T16:49:45.737Z"
     }
   ]
 }
