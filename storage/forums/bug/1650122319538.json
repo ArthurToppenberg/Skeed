@@ -5,7 +5,12 @@
   "username": "user1",
   "date": "2022-04-16T15:18:39.538Z",
   "id": 1650122319538,
-  "vote": 0,
-  "usersvote": [],
+  "vote": 1,
+  "usersvote": [
+    {
+      "username": "Topperware",
+      "vote": "up"
+    }
+  ],
   "comments": []
 }

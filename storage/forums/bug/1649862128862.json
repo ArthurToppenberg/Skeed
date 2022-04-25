@@ -5,7 +5,7 @@
   "username": "Mammi",
   "date": "2022-04-13T15:02:08.862Z",
   "id": 1649862128862,
-  "vote": -1,
+  "vote": 0,
   "usersvote": [
     {
       "username": "Mammi",
@@ -26,6 +26,10 @@
     {
       "username": "user1",
       "vote": "down"
+    },
+    {
+      "username": "Topperware",
+      "vote": "up"
     }
   ],
   "comments": [
